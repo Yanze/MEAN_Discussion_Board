@@ -1,0 +1,16 @@
+<div class="row col-md-10 col-md-offset-1" ng-controller="UserController">
+
+  <p class="alert alert-danger" ng-show="warning">{{warning}}</p>
+  <h3>Hello!</h3>
+  <p>Please enter your name to join and share your ideas!</p>
+  <form name="myForm" novalidate>
+  Name:
+  <input name="user_name" type="text" ng-model="current_user" placeholder="name" required>
+  <a type="submit" ng-click="enter()" class="btn btn-primary">Enter</a>
+
+  <div ng-messages="myForm.user_name.$error" ng-if="submitted" style="color:red" role="alert">
+        <div ng-message="required">Please enter user name</div>
+      </div>
+  </form>
+
+</div>
