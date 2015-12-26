@@ -1,0 +1,69 @@
+<div class="col-md-10">
+  <h2>Hello {{username}}!</h2>
+
+
+
+<br>
+<br>
+  <!-- add discussion here -->
+  <div>
+    <form name="myForm" novalidate="">
+      <div class="form-group">
+        <label>Add New Disucssion</label>
+        <p class="alert alert-success" ng-show="warning">{{warning}}</p>
+        <input class="form-control" type="text" name="myDiscussion" ng-model="new_discussion.text" ng-minlength="5" ng-maxlength="140" required>
+      </div>
+      <button type="submit" class="btn btn-success btn-sm pull-right" ng-click="addDiscussion()">Add Discussion</button>
+
+      <div ng-messages="myForm.myDiscussion.$error" ng-if="submitted" style="color:red" role="alert">
+        <div ng-message="required">Discussion cannot be blank!</div>
+        <div ng-message="minlength">Discussion has to be more than 5 letters</div>
+        <div ng-message="maxlength">Discussion has to be less than 140 letters</div>
+      </div>
+    </form>
+  </div>
+  <br>
+  <br>
+  <hr>
+
+
+  <!-- display all users with total number of comments they have -->
+  <div ng-repeat="user in users">
+    <h4>{{user.name}} has {{user.comments.length}} comments.</h4>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <!-- display all discussions -->
+  <div ng-repeat="discussion in discussions">
+    <h3>{{discussion._user.name}} Says: </h3>
+    <p>{{discussion.text}}</p>
+
+
+    <!-- add comment -->
+    <form name="myCommentForm" novalidate="">
+      <div class="form-group">
+        <p class="alert alert-success" ng-show="warning">{{warning}}</p>
+        <input class="form-control" type="text" name="myComment" ng-model="discussion.new_comment" ng-minlength="5" ng-maxlength="140" required>
+      </div>
+      <button type="submit" class="btn btn-success btn-xs pull-right" ng-click="addCommentByDiscussion(discussion)">Add Comment</button>
+
+      <div ng-messages="myCommentForm.myComment.$error" ng-if="discussion.submittedComment" style="color:red" role="alert">
+        <div ng-message="required">Discussion cannot be blank!</div>
+        <div ng-message="minlength">Discussion has to be more than 5 letters</div>
+        <div ng-message="maxlength">Discussion has to be less than 140 letters</div>
+      </div>
+    </form>
+    <br>
+
+    <!-- display all comments -->
+    <div ng-repeat="comment in discussion.comments">
+        <h4>{{comment.name}} comment on your discussion: </h4>
+        <p>{{comment.text}}</p>
+    </div>
+    <hr>
+  </div>
+</div>

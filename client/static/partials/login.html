@@ -1,16 +1,23 @@
-<div class="row col-md-10 col-md-offset-1" ng-controller="UserController">
-
-  <p class="alert alert-danger" ng-show="warning">{{warning}}</p>
-  <h3>Hello!</h3>
-  <p>Please enter your name to join and share your ideas!</p>
+<div>
+  <h3>Please enter your name!</h3>
   <form name="myForm" novalidate>
-  Name:
-  <input name="user_name" type="text" ng-model="current_user" placeholder="name" required>
-  <a type="submit" ng-click="enter()" class="btn btn-primary">Enter</a>
+    <input type="text"
+           name="userName"
+           ng-model="username"
+           required
+           ng-minlength="3"
+           ng-maxlength="10">
 
-  <div ng-messages="myForm.user_name.$error" ng-if="submitted" style="color:red" role="alert">
-        <div ng-message="required">Please enter user name</div>
-      </div>
+    <button class="btn btn-primary btn-sm" ng-click="enter()">Enter</button>
+
+    <div ng-messages="myForm.userName.$error"
+         style="color:red"
+         role="alert"
+         ng-if="submitted">
+    <div ng-message="required">Name cannot be blank</div>
+    <div ng-message="minlength">Name has to be more than 3 letters</div>
+    <div ng-message="maxlength">Name has to be less than 10 letters</div>
+  </div>
   </form>
 
 </div>

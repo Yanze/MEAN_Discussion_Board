@@ -5,7 +5,7 @@ var app = express();
 
 // set up a static file server that points to the 'client' directory;
 // we will put all angular files inside of client;
-app.use(express.static(path.join(__dirname, './client/static')));
+app.use(express.static(path.join(__dirname, './client')));
 // app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 // require and runs the code from our routes.js
@@ -13,4 +13,6 @@ app.use(bodyParser.json());
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
 
-app.listen(8000, function(){});
+app.listen(8000, function(){
+
+});
